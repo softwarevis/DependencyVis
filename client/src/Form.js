@@ -4,6 +4,7 @@ import {
   Text,
   Heading,
   Input,
+  useColorModeValue,
   Container,
   FormControl,
   Checkbox,
@@ -15,6 +16,7 @@ import {
 import { lookupNewGraph } from "./utils/d3";
 import { AiFillGithub } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import ColorModeToggle from "./ColorModeToggle";
 const { useState } = React;
 
 const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
@@ -30,6 +32,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
     setErrorText("");
   };
 
+  const bg = useColorModeValue("rgb(191, 226, 227)", "rgba(36,50,111,1)")
   var handleSubmit = async (o, r, f = "") => {
     var userInfo = {
       username: o,
@@ -45,10 +48,9 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
   };
   var handleSubmitEvent = (event) => {
     event.preventDefault();
-    if (owner === "" || repo ==="") {
-       console.warn('Must enter in owner and repo name')
-    }
-    else {
+    if (owner === "" || repo === "") {
+      console.warn("Must enter in owner and repo name");
+    } else {
       handleSubmit(owner, repo, folder);
     }
   };
@@ -64,7 +66,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
 
   checkURL();
   return (
-    <Box bgColor="rgb(191, 226, 227)" w="100vw" minHeight="100vh" pt="20em">
+    <Box bgColor={bg} w="100vw" minHeight="100vh" pt="20em">
       <Box>
         <Heading
           fontSize="4em"
@@ -114,9 +116,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
                   Use own database?
                 </Checkbox>
                 <Button type="submit" onClick={(e) => handleSubmitEvent(e)}>
-                   <Link to= "/vispage">
-                     Search
-                   </Link>
+                  <Link to="/vispage">Search</Link>
                 </Button>
               </Stack>
             </Stack>
@@ -125,17 +125,11 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
       </Box>
 
       <Center>
-        <Box
-          py="2"
-          px="10"
-          border="1px"
-          borderRadius="md"
-          borderColor="black"
-        >
+        <Box py="2" px="10" border="1px" borderRadius="md" borderColor="black">
           <Heading as="h2" my="0.3em">
             Examples:
           </Heading>
-          <Stack direction="row" >
+          <Stack direction="row">
             <Stack direction="column" minWidth="300">
               <Text>
                 owner:{" "}
@@ -157,12 +151,14 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
         </Box>
       </Center>
 
-      <Box position='absolute' bottom='5' right='5'>
+      <Box position="absolute" bottom="5" right="5">
         <a href="https://github.com/NightLore/DependencyVis">
-           <Stack direction='row'>
-            <AiFillGithub /> <Text>DependencyVis repository</Text>
-           </Stack>
+          <Stack direction="row">
+            <AiFillGithub /> 
+            <Text>DependencyVis repository</Text>
+          </Stack>
         </a>
+          <ColorModeToggle />
       </Box>
     </Box>
   );
