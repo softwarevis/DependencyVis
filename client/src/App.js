@@ -10,18 +10,19 @@ import ErrorText from "./ErrorText";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Routes, Route, Link } from "react-router-dom";
+import Vispage from "./Vispage";
 
 const { useState } = React;
 const App = () => {
-  const [nodes, setNodes] = useState([]);
-  const [links, setLinks] = useState([]);
-  const [nodesChanged, setNodesChanged] = useState(false);
-  const [showForm, setFormVisibility] = useState(true);
   const [errorText, setErrorText] = useState("");
   const [dbOption, setDBOption] = useState(true);
   const [loadAheadOption, setLoadAheadOption] = useState(true); // switch to false to keep from loading all information ahead of time
   const [colorOption, setColorOption] = useState("loaded");
+  const [loadingPageVisibility, setLoadingPageVisibility] = useState(false);
   const [sizeOption, setSizeOption] = useState("nothing");
+  const [nodesChanged, setNodesChanged] = useState(false);
+  const [links, setLinks] = useState([]);
+  const [nodes, setNodes] = useState([]);
 
   const setGraph = (graph) => {
     if (graph) {
@@ -57,10 +58,9 @@ const App = () => {
             element={
               <Form
                 setGraph={setGraph}
+                // setLoadingPageVisibility={setLoadingPageVisibility}
                 setErrorText={setErrorText}
-               //  showForm={showForm}
-               //  setFormVisibility={setFormVisibility}
-               dbOption={dbOption}
+                dbOption={dbOption}
                 setDBOption={setDBOption}
                 options={options}
               />
@@ -69,41 +69,19 @@ const App = () => {
           <Route
             path="vispage"
             element={
-              <Box>
-                <ErrorText text={errorText} />
-                <Sidebar nodes={nodes} links={links} />
-                <Box className="top-right">
-                  <ColorLegend colorOption={colorOption} />
-                  <OptionsPane
-                    options={options}
-                    setColorOption={handleColorOption}
-                    setSizeOption={handleSizeOption}
-                  />
-                </Box>
-                <AddPane
-                  nodes={nodes}
-                  links={links}
-                  setGraph={setGraph}
-                  options={options}
-                  setErrorText={setErrorText}
-                />
-                <ButtonPane
-                  nodes={nodes}
-                  links={links}
-                  setGraph={setGraph}
-                  options={options}
-                  setErrorText={setErrorText}
-                />
-                <Graph
-                  nodes={nodes}
-                  links={links}
-                  nodesChanged={nodesChanged}
-                  setNodesChanged={setNodesChanged}
-                  setGraph={setGraph}
-                  setErrorText={setErrorText}
-                  options={options}
-                />
-              </Box>
+              <Vispage
+                errorText={errorText}
+                setErrorText={setErrorText}
+                setGraph={setGraph}
+                handleSizeOption={handleSizeOption}
+                handleColorOption={handleColorOption}
+                colorOption={colorOption}
+                options={options}
+                nodesChanged={nodesChanged}
+                setNodesChanged={setNodesChanged}
+                nodes={nodes}
+                links={links}
+              />
             }
           />
         </Routes>

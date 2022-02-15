@@ -61,8 +61,8 @@ function setEndPoints(selection) {
 function getSize() {
    let size = getDocumentSize();
    return {
-      width: size.width - 2,
-      height: size.height - 2,
+      width: size.width ,
+      height: size.height,
    };
 }
 
@@ -156,7 +156,7 @@ class Graph extends Component {
          .append("svg")
          .attr("width", width)
          .attr("height", height)
-         .style("border", "1px solid black");
+         .style("border", "5px solid black");
 
    }
 
