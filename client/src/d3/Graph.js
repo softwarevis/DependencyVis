@@ -156,7 +156,7 @@ class Graph extends Component {
          .append("svg")
          .attr("width", width)
          .attr("height", height)
-         .style("border", "5px solid black");
+         .style("border", "1px solid black");
 
    }
 

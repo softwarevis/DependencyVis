@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Graph from "./d3/Graph";
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Center, Flex, Spacer } from "@chakra-ui/react";
 import Sidebar from "./Sidebar";
 import ColorLegend from "./ColorLegend";
 import OptionsPane from "./OptionsPane";
@@ -38,12 +38,30 @@ const Vispage = ({
           />
         </Box>
         <Spacer />
-        <Flex className="top-right" m={5}>
-          <ColorLegend colorOption={colorOption} />
-          <OptionsPane
+        <ButtonPane
+          nodes={nodes}
+          links={links}
+          setGraph={setGraph}
+          options={options}
+          setErrorText={setErrorText}
+        />
+        <Spacer />
+        <Flex direction="column" className="top-right" m={5}>
+          <Flex direction="row">
+            <ColorLegend colorOption={colorOption} />
+            <OptionsPane
+              options={options}
+              setColorOption={handleColorOption}
+              setSizeOption={handleSizeOption}
+            />
+          </Flex>
+          <Spacer />
+          <AddPane
+            nodes={nodes}
+            links={links}
+            setGraph={setGraph}
             options={options}
-            setColorOption={handleColorOption}
-            setSizeOption={handleSizeOption}
+            setErrorText={setErrorText}
           />
         </Flex>
       </Flex>

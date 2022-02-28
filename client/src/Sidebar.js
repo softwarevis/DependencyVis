@@ -3,7 +3,8 @@ import "./css/Sidebar.css";
 import "./css/tooltip.css";
 import HideButton, { TRANSFORMS } from "./HideButton";
 import { getDocumentSize } from "./utils/utils";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Button } from "@chakra-ui/react";
+import { TriangleUpIcon } from "@chakra-ui/icons";
 
 const { useState } = React;
 
@@ -86,15 +87,17 @@ const CloseDropdownButton = (props) => {
   };
 
   return (
-    <button
-      id={"sidebar-close-button"}
-      className={"tooltip sidebar-tooltip"}
+    <Button
+      // id={"sidebar-close-button"}
+      // className={"tooltip sidebar-tooltip"}
+      zIndex={4}
       onClick={closeNodes}
     >
-      <span className={"tooltiptext sidebar-tooltiptext"}>
+      <TriangleUpIcon />
+      {/* <span className={"tooltiptext sidebar-tooltiptext"}>
         {"Close All Dropdowns"}
-      </span>
-    </button>
+      </span> */}
+    </Button>
   );
 };
 
@@ -138,29 +141,33 @@ class Sidebar extends Component {
     if (this.state.isHidden) style.transform = TRANSFORMS.LEFT;
 
     return (
-      <Box
-        zIndex={2}
-        bgColor="lightsteelblue"
-        width={200}
-        height="90vh"
-        overflow="auto"
-        m={5}
-        borderRadius={10}
-        boxShadow="dark-lg"
-      >
-        <Box id={"sidebar-list-container"}>
-          <ul className={"sidebar-list"}>{nodes}</ul>
-        </Box>
-        <CloseDropdownButton
-          nodes={this.props.nodes}
-          toggleUpdate={this.toggleUpdate}
-        />
-        {/* <HideButton
+      <Flex>
+        <Box
+          zIndex={2}
+          bgColor="lightsteelblue"
+          width={200}
+          height="90vh"
+          overflow="auto"
+          m={5}
+          borderRadius={10}
+          boxShadow="dark-lg"
+        >
+          <Box id={"sidebar-list-container"}>
+            <ul className={"sidebar-list"}>{nodes}</ul>
+          </Box>
+          {/* <HideButton
           isHidden={this.state.isHidden}
           setHidden={this.setHidden}
           direction={"right"}
         /> */}
-      </Box>
+        </Box>
+        <Box mt={5}>
+          <CloseDropdownButton
+            nodes={this.props.nodes}
+            toggleUpdate={this.toggleUpdate}
+          />
+        </Box>
+      </Flex>
     );
   }
 }

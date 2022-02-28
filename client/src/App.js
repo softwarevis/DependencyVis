@@ -4,7 +4,6 @@ import Sidebar from "./Sidebar";
 import Form from "./Form";
 import ColorLegend from "./ColorLegend";
 import OptionsPane from "./OptionsPane";
-import ButtonPane from "./ButtonPane";
 import AddPane from "./AddPane";
 import ErrorText from "./ErrorText";
 import { ChakraProvider } from "@chakra-ui/react";

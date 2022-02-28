@@ -21,7 +21,9 @@ Then go to http://localhost:3000 to connect to client
 `MONGO_DB_DATABASE=`\
 `MONGO_DB_COLLECTION=`\
 `MONGO_DB_USERNAME=`\
-`MONGO_DB_PASSWORD=`
+`MONGO_DB_PASSWORD=`\
+`GITHUB_USERNAME=`\
+`GITHUB_ACCESS_TOKEN=`
 4. run server with `node server.js`
 
 ### Usage Notes
