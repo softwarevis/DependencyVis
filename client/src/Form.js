@@ -7,6 +7,7 @@ import {
   useColorModeValue,
   Container,
   FormControl,
+  FormLabel,
   Checkbox,
   Center,
   Button,
@@ -25,6 +26,8 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
   const [folder, setFolder] = useState("");
   const navigate = useNavigate();
   //   const [dbOption, setDBOption] = useState(true);
+
+ 
 
   var reset = () => {
     setOrg("");
@@ -85,25 +88,35 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
             </Heading>
 
             <Center>
-              <FormControl isRequired w="fit-content" my="5">
+              <FormControl
+                isRequired
+                w="fit-content"
+                my="5"
+              >
                 <Stack direction="column" spacing="5">
                   <Stack direction="row" spacing="8">
-                    <Input
-                      type="text"
-                      value={owner}
-                      variant="filled"
-                      onChange={(e) => setOrg(e.target.value)}
-                      placeholder="GitHub owner"
-                      isRequired={true}
-                    />
-                    <Input
-                      type="text"
-                      variant="filled"
-                      value={repo}
-                      onChange={(e) => setRepo(e.target.value)}
-                      placeholder="GitHub repo"
-                      isRequired={true}
-                    />
+                    <Box>
+                      <FormLabel>Github Owner</FormLabel>
+                      <Input
+                        type="text"
+                        value={owner}
+                        variant="filled"
+                        onChange={(e) => setOrg(e.target.value)}
+                        placeholder="GitHub owner"
+                        isRequired={true}
+                      />
+                    </Box>
+                    <Box>
+                      <FormLabel>Github Repo</FormLabel>
+                      <Input
+                        type="text"
+                        variant="filled"
+                        value={repo}
+                        onChange={(e) => setRepo(e.target.value)}
+                        placeholder="GitHub repo"
+                        isRequired={true}
+                      />
+                    </Box>
                   </Stack>
 
                   <Input
