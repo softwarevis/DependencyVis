@@ -180,7 +180,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
           </Center>
 
           <Box position="absolute" bottom="5" right="5">
-            <a href="https://github.com/NightLore/DependencyVis">
+            <a href="https://github.com/softwarevis/DependencyVis">
               <Stack direction="row">
                 <AiFillGithub />
                 <Text>DependencyVis repository</Text>
