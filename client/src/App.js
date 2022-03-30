@@ -9,6 +9,7 @@ import ErrorText from "./ErrorText";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Routes, Route, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Vispage from "./Vispage";
 
 const { useState } = React;
@@ -22,6 +23,7 @@ const App = () => {
   const [nodesChanged, setNodesChanged] = useState(false);
   const [links, setLinks] = useState([]);
   const [nodes, setNodes] = useState([]);
+  const navigate = useNavigate();
 
   const setGraph = (graph) => {
     if (graph) {
@@ -62,6 +64,7 @@ const App = () => {
                 dbOption={dbOption}
                 setDBOption={setDBOption}
                 options={options}
+                navigate={navigate}
               />
             }
           />
@@ -80,6 +83,7 @@ const App = () => {
                 setNodesChanged={setNodesChanged}
                 nodes={nodes}
                 links={links}
+                navigate={navigate}
               />
             }
           />

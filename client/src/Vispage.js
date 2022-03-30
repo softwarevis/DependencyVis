@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import Graph from "./d3/Graph";
-import { Box, Center, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Spacer } from "@chakra-ui/react";
 import Sidebar from "./Sidebar";
 import ColorLegend from "./ColorLegend";
 import OptionsPane from "./OptionsPane";
 import ButtonPane from "./ButtonPane";
 import AddPane from "./AddPane";
 import ErrorText from "./ErrorText";
+import { Link } from "react-router-dom";
+
+
+const handleClick  = (navigate) =>  {
+  navigate('/', {replace: true});
+}
 
 const Vispage = ({
   errorText,
@@ -20,12 +26,17 @@ const Vispage = ({
   setNodesChanged,
   nodes,
   links,
+  navigate
 }) => {
   return (
     <Box>
       {/* <ErrorText text={errorText} /> */}
       <Flex>
-        <Sidebar nodes={nodes} links={links} />
+        <Box>
+          {/* <Button type="submit" zIndex={3} m={3} onClick={handleClick(navigate)} >Visualize another repo</Button> */}
+          <Link to="/"><Button type="submit" zIndex={3} m={3}>Visualize another repo</Button></Link>
+          <Sidebar nodes={nodes} links={links} />
+        </Box>
         <Box id="graph-container" minW={500} minH={500}>
           <Graph
             nodes={nodes}

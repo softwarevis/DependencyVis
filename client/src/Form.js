@@ -20,11 +20,11 @@ import { Link, useNavigate } from "react-router-dom";
 import ColorModeToggle from "./ColorModeToggle";
 import LoadingPage from "./LoadingPage";
 
-const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
+const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate }) => {
   const [owner, setOrg] = useState("");
   const [repo, setRepo] = useState("");
   const [folder, setFolder] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   //   const [dbOption, setDBOption] = useState(true);
 
  
@@ -54,6 +54,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options }) => {
   };
   var handleSubmitEvent = (event) => {
     event.preventDefault();
+    // need to validate the params here 
     if (owner === "" || repo === "") {
       console.warn("Must enter in owner and repo name");
     } else {
