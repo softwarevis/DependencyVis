@@ -28,8 +28,15 @@ const ListNode = (props) => {
   const [active, setActive] = useState(false); // solely to update when clicked
   const node = props.node;
   const toggleActive = () => {
+    console.log(node)
     node.active = !node.active;
     setActive(!active);
+    if (active == true) {
+      let ele = document.getElementById(node.id);
+      if (ele) {
+        ele.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      }
+    }
   };
 
   if (!node.details) {
@@ -43,7 +50,7 @@ const ListNode = (props) => {
   if (!node.active) {
     return (
       <li>
-        <span className={"sidebar-caret"} onClick={toggleActive}>
+        <span className={"sidebar-caret"} id={node.id} onClick={toggleActive}>
           {node.id}
         </span>
       </li>

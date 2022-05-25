@@ -67,6 +67,7 @@ const OPTIONS = [
       createChoice("mean_pull_requests", "Mean Time PR Review",
          "Mean Time it takes for pull requests within the last 30 days to close since it is created (max 100 PRs)",
          "pull_request_mean_time"),
+      createChoice("truck_factor", "Truck Factor", "Truck factor is the metric which dictates how many developers need to be killed before the project dies", "tf")
    ]),
 ];
 
@@ -83,6 +84,7 @@ const SIZE_OPTION_FORKS             = SIZE_OPTIONS.CHOICES[3];
 const SIZE_OPTION_OPEN_ISSUES       = SIZE_OPTIONS.CHOICES[4];
 const SIZE_OPTION_CLOSED_ISSUES     = SIZE_OPTIONS.CHOICES[5];
 const SIZE_OPTION_OPEN_TOTAL_ISSUES = SIZE_OPTIONS.CHOICES[6];
+const SIZE_OPTION_TRUCK_FACTORS      = SIZE_OPTIONS.CHOICES[7];
 
 export { 
    COLOR_OPTIONS, 
@@ -97,6 +99,7 @@ export {
    SIZE_OPTION_OPEN_ISSUES, 
    SIZE_OPTION_CLOSED_ISSUES, 
    SIZE_OPTION_OPEN_TOTAL_ISSUES, 
+   SIZE_OPTION_TRUCK_FACTORS,
    createHandlers
 }
 export default OPTIONS;
