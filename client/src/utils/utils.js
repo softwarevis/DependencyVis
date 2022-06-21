@@ -7,15 +7,29 @@ function _getDocumentHeight() {
 }
 
 function getDocumentSize() {
-//   if (document.getElementById("graph-container")) {
-//     return {
-//       width: document.getElementById("graph-container").clientWidth,
-//       height: document.getElementById("graph-container").clientHeight,
-//     };
-//   }
+  // if (document.getElementById("graph-container")) {
+  //   return {
+  //     width: document.getElementById("graph-container").clientWidth,
+  //     height: document.getElementById("graph-container").clientHeight,
+  //   };
+  // }
+  // return {
+  //   width: _getDocumentWidth() ,
+  //   height: _getDocumentHeight() ,
+  // };
+
+  const width =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
+  const height =
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.body.clientHeight;
+
   return {
-    width: _getDocumentWidth() ,
-    height: _getDocumentHeight() ,
+    width: width,
+    height: height,
   };
 }
 
