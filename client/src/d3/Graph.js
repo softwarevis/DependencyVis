@@ -122,11 +122,13 @@ class Graph extends Component {
          console.log("Changed", this.props.nodes);
       }
       return (
-
+      <>
       <div id="graph" ref={this._setRef.bind(this)}>
         {this.state.setSpinner && (
           <Center>
             <Spinner
+              position="absolute"
+              top="50%"
               thickness="4px"
               speed="0.65s"
               emptyColor="gray.200"
@@ -136,6 +138,7 @@ class Graph extends Component {
           </Center>
         )}
       </div>
+      </>
       )
    }
 
@@ -173,8 +176,8 @@ class Graph extends Component {
       graphData.svgCanvas = d3.select(graphData.rootNode)
          .append("svg")
          .attr("width", width)
-         .attr("height", height)
-         .style("border", "1px solid black");
+         .attr("height", height);
+         // .style("border", "1px solid black");
 
    }
 
