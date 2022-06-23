@@ -65,7 +65,7 @@ const OPTIONS = [
          "number of closed PRs within the last 30 days",
          "closed_pull_request_count"),
       createChoice("mean_pull_requests", "Mean Time PR Review",
-         "Mean Time it takes for pull requests within the last 30 days to close since it is created (max 100 PRs)",
+         "Mean Time PRs get reviewed (within the last 30 days)(max 100 PRs)",
          "pull_request_mean_time"),
       createChoice("truck_factor", "Truck Factor", "Truck factor is the metric which indicates how many developers need to leave the project before the project \'dies\'", "tf")
    ]),
