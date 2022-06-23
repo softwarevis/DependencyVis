@@ -42,7 +42,7 @@ const OPTIONS = [
       createChoice("audit", "Audit", 
          "Color nodes based on the highest npm audit severity. Go to https://www.npmjs.com/advisories/<id> for more info."),
       createChoice("license", "License", 
-         "Nodes with the same color have the same license.")
+         "Nodes with the same color have the same license category.")
    ]),
    createOption("Size", [
       createChoice("nothing", "Nothing", "Keep all nodes the same size"),
@@ -67,7 +67,7 @@ const OPTIONS = [
       createChoice("mean_pull_requests", "Mean Time PR Review",
          "Mean Time it takes for pull requests within the last 30 days to close since it is created (max 100 PRs)",
          "pull_request_mean_time"),
-      createChoice("truck_factor", "Truck Factor", "Truck factor is the metric which dictates how many developers need to be killed before the project dies", "tf")
+      createChoice("truck_factor", "Truck Factor", "Truck factor is the metric which indicates how many developers need to leave the project before the project \'dies\'", "tf")
    ]),
 ];
 
