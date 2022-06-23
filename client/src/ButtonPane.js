@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './css/ButtonPane.css'
 import HideButton, { TRANSFORMS } from './HideButton';
 import { searchNewGraph } from './utils/d3';
+import { Box , Button} from '@chakra-ui/react';
 
 class ButtonPane extends Component {
    constructor(props) {
@@ -45,14 +46,15 @@ class ButtonPane extends Component {
       };
 
       return (
-         <div id="button-pane" style={style}>
-            <button type="button" onClick={e => this.loadNextLayer(graph)}>Load Next Layer</button>
-            <HideButton
+         // <Box id="button-pane" style={style}>
+         <Box p={[0, 2, 2, 2]}>
+            <Button onClick={e => this.loadNextLayer(graph)}>Load Next Layer</Button>
+            {/* <HideButton
                isHidden={this.state.isHidden}
                setHidden={this.setHidden}
                direction={"down"}
-            />
-         </div>
+            /> */}
+         </Box>
       );
 
    }

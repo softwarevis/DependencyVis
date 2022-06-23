@@ -6,8 +6,8 @@ import {
 
 function updateTooltip(tooltip, d, attributes) {
    attributes.tooltipWidth = 
-      Math.max(d.id.length, ("version: " + d.version).length) 
-      * attributes.tooltipCharWidth;
+      Math.max(("Dependencies Not Loaded").length, d.id.length, ("version: " + d.version).length) 
+      * attributes.tooltipCharWidth + 2;
 
    tooltip.selectAll("text")
       .selectAll("*").remove()

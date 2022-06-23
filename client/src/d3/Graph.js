@@ -4,6 +4,7 @@ import * as d3 from 'd3'
 import mouse from './mouse'
 import { updateNodes } from '../utils/d3'
 import { getDocumentSize } from '../utils/utils';
+import { Center, Spinner } from "@chakra-ui/react";
 
 const SIMULATION = {
    STRENGTH: 45,
@@ -71,6 +72,7 @@ class Graph extends Component {
       super(props);
       this.state = getSize();
       graphData.scale = scale;
+      this.state.setSpinner = true;
    }
 
    resize = () => {
@@ -105,6 +107,7 @@ class Graph extends Component {
 
       if (this.props.nodesChanged)
       {
+         this.setState({ setSpinner: false });
          this.props.setNodesChanged(false);
          this._clearCanvas();
 
@@ -118,7 +121,25 @@ class Graph extends Component {
 
          console.log("Changed", this.props.nodes);
       }
-      return <div id="graph" ref={this._setRef.bind(this)}/> 
+      return (
+      <>
+      <div id="graph" ref={this._setRef.bind(this)}>
+        {this.state.setSpinner && (
+          <Center>
+            <Spinner
+              position="absolute"
+              top="50%"
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </Center>
+        )}
+      </div>
+      </>
+      )
    }
 
    /*
@@ -155,8 +176,8 @@ class Graph extends Component {
       graphData.svgCanvas = d3.select(graphData.rootNode)
          .append("svg")
          .attr("width", width)
-         .attr("height", height)
-         .style("border", "1px solid black");
+         .attr("height", height);
+         // .style("border", "1px solid black");
 
    }
 
