@@ -4,7 +4,10 @@ async function getRepoDetails(repo) {
    console.log("getRepoDetails", repo);
    let data = null;
    await repo.getDetails((err, details) => {
-      if (err) return;
+      if (err) {
+         console.log("Error getting repo details.", err);
+         return;
+      }
 
       // TODO: turn into loop
       // manually done to pick and choose properties we want
