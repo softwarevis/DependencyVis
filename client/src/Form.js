@@ -19,6 +19,7 @@ import { AiFillGithub } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import ColorModeToggle from "./ColorModeToggle";
 import LoadingPage from "./LoadingPage";
+import { validateRepo } from "./utils/axios";
 
 const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate }) => {
   const [owner, setOrg] = useState("");
@@ -52,11 +53,10 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
     reset();
     // TODO: link to vispage
   };
-  var handleSubmitEvent = (event) => {
+  var handleSubmitEvent = async (event) => {
     event.preventDefault();
-    // need to validate the params here 
-    if (owner === "" || repo === "") {
-      console.warn("Must enter in owner and repo name");
+    if (owner === "" || repo === "" || !await validateRepo(owner, repo)) {
+      console.warn("Must enter valid owner and repo name.");
     } else {
       handleSubmit(owner, repo, folder);
       navigate("/vispage", { replace: true });
@@ -67,6 +67,8 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
     const urlQuerry = new URLSearchParams(window.location.search);
     const o = urlQuerry.get("owner");
     const r = urlQuerry.get("repo");
+    console.log("owner: "+o);
+    console.log("repo: "+r);
     if (o && r) {
       handleSubmit(o, r);
     }

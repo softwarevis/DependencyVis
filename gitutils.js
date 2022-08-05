@@ -38,6 +38,8 @@ async function getRepoDetails(repo) {
    });
 
    // request list of open pull requests
+   //Max per page is 100
+   //Default PR status is open
    await repo.listPullRequests({per_page: 100}, (err, prs) => {
       if (err) return;
 

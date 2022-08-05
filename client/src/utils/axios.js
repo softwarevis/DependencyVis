@@ -12,6 +12,16 @@ function formGithubURL(username, repo) {
   return "https://github.com/" + username + "/" + repo;
 }
 
+async function validateRepo(owner, repo) {
+  try {
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`);
+    return (response.status === 200); 
+  } catch(error) {
+    console.log(error);
+    return false;
+  }
+}
+
 async function post(querry, data, options) {
   let resp = null;
   let tf = null;
@@ -53,4 +63,4 @@ const lookup = async (userInfo, options) =>
 const search = async (querry, options) =>
   await post("search", { querry: querry }, options);
 
-export { lookup, search };
+export { lookup, search, validateRepo };
