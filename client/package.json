@@ -2,6 +2,10 @@
   "name": "dependency-app",
   "version": "0.1.0",
   "private": true,
+  "engines" : { 
+    "npm" : ">=8.0.0",
+    "node" : ">=16.0.0"
+  },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.1",

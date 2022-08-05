@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "DependencyVis backend makes calls to Github API and MongoDB to retrieve dependency information",
   "main": "server.js",
+  "engines" : { 
+    "npm" : ">=8.0.0",
+    "node" : ">=16.0.0"
+  },  
   "dependencies": {
     "child_process": "^1.0.2",
     "cors": "^2.8.5",
