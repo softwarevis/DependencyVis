@@ -11,7 +11,7 @@ async function initialize(databaseInfo) {
       + info.password + "@" 
       + info.url;
    client = await MongoClient.connect(uri, { 
-      //useUnifiedTopology: true, // does not work but was recommended
+      useUnifiedTopology: true, // does not work but was recommended
       useNewUrlParser: true 
    });
    collection = client.db(info.dbName).collection(info.dbCollection);
