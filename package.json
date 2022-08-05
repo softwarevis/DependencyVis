@@ -21,6 +21,6 @@
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "author": "Nathan Lui",
+  "author": "Software Vis GitHub Org at Cal Poly",
   "license": "ISC"
 }

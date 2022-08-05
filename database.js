@@ -1,12 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 
-/* // Example code
-const collected = collection.find({username: data.username});
-collected.each(function(err, doc) {
-   console.log(doc);
-});
-*/
-
 var client;
 var info;
 var collection;
