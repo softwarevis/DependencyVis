@@ -13,6 +13,10 @@ import {
   Button,
   Stack,
   Divider,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import { lookupNewGraph } from "./utils/d3";
 import { AiFillGithub } from "react-icons/ai";
@@ -25,6 +29,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
   const [owner, setOrg] = useState("");
   const [repo, setRepo] = useState("");
   const [folder, setFolder] = useState("");
+  const [isValidOwnerRepo, setIsValidOwnerRepo] = useState(true);
   // const navigate = useNavigate();
   //   const [dbOption, setDBOption] = useState(true);
 
@@ -35,6 +40,7 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
     setRepo("");
     setFolder("");
     setErrorText("");
+    setIsValidOwnerRepo(true);
   };
 
   const bg = useColorModeValue("rgb(191, 226, 227)", "rgba(36,50,111,1)");
@@ -56,8 +62,10 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
   var handleSubmitEvent = async (event) => {
     event.preventDefault();
     if (owner === "" || repo === "" || !await validateRepo(owner, repo)) {
+      setIsValidOwnerRepo(false);
       console.warn("Must enter valid owner and repo name.");
     } else {
+      setIsValidOwnerRepo(true);
       handleSubmit(owner, repo, folder);
       navigate("/vispage", { replace: true });
     }
@@ -72,6 +80,18 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
     if (o && r) {
       handleSubmit(o, r);
     }
+  };
+
+  var RepoAlert = () => {
+    if (!isValidOwnerRepo)
+      return (
+        <Alert status='error'>
+            <AlertIcon />
+            <AlertTitle>Invalid Owner/Repo</AlertTitle>
+            <AlertDescription>Please, enter a valid GitHub Owner and Repo name.</AlertDescription>
+        </Alert>);
+    else
+        return (<></>);
   };
 
   checkURL();
@@ -141,7 +161,10 @@ const Form = ({ setGraph, setErrorText, dbOption, setDBOption, options, navigate
                     <Button type="submit" onClick={(e) => handleSubmitEvent(e)}>
                       {/* <Link to="/vispage">Search</Link> */}
                       Search
-                    </Button>
+                    </Button>                    
+                  </Stack>
+                  <Stack direction="row">
+                    <RepoAlert />    
                   </Stack>
                 </Stack>
               </FormControl>
